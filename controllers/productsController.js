@@ -41,7 +41,7 @@ const getSingleProduct = async(req,res)=>{
     //     user:product.user,
     //     reviews:product.reviews
     // });
-
+    
     res.status(StatusCodes.OK).json({
         product
     })
