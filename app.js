@@ -1,3 +1,4 @@
+
 require('dotenv').config()
 require('express-async-errors')
 const express = require('express')
@@ -14,10 +15,14 @@ const reviewRoutes = require('./routes/reviewRoutes')
 const Review = require('./models/Review')
 const Product = require('./models/Product')
 const orderRoutes = require('./routes/orderRoutes')
+const cors = require('cors')
+const mongoSanitize = require('express-mongo-sanitize')
+const xss = require('xss-clean')
+const helmet = require('helmet')
+const rateLimiter = require('express-rate-limit')
 const fileUpload = require('express-fileupload');
 const swaggerUI = require('swagger-ui-express');
 const YAML = require('yamljs');
-const rateLimiter = require('express-rate-limit')
 const swaggerDocument = YAML.load('./swagger.yaml');
 
 app.set('trust proxy',1)
