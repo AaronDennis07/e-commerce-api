@@ -33,6 +33,9 @@ app.use(cors())
 */
 
 
+
+
+
 require('dotenv').config()
 require('express-async-errors')
 const express = require('express')
@@ -49,11 +52,11 @@ const reviewRoutes = require('./routes/reviewRoutes')
 const Review = require('./models/Review')
 const Product = require('./models/Product')
 const orderRoutes = require('./routes/orderRoutes')
-
+const fileUpload = require('express-fileupload');
 
 app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(express.json({extended:true}))
-
+app.use(fileUpload())
 app.use('/api/v1/auth',authRoutes)
 app.use('/api/v1/users',userRoutes)
 app.use('/api/v1/products',productRoutes)
