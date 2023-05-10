@@ -17,6 +17,7 @@ const orderRoutes = require('./routes/orderRoutes')
 const fileUpload = require('express-fileupload');
 const swaggerUI = require('swagger-ui-express');
 const YAML = require('yamljs');
+const rateLimiter = require('express-rate-limit')
 const swaggerDocument = YAML.load('./swagger.yaml');
 
 app.set('trust proxy',1)
