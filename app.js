@@ -32,7 +32,7 @@ const mongoSanitize = require('express-mongo-sanitize')
 const xss = require('xss-clean')
 const helmet = require('helmet')
 const rateLimiter = require('express-rate-limit')
-
+const fileUpload = require('express-fileupload');
 
 
 app.set('trust proxy',1)
@@ -49,7 +49,7 @@ app.use(helmet())
 
 app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(express.json({extended:true}))
-
+app.use(fileUpload())
 app.use('/api/v1/auth',authRoutes)
 app.use('/api/v1/users',userRoutes)
 app.use('/api/v1/products',productRoutes)
