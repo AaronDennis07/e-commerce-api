@@ -1,7 +1,5 @@
 const {StatusCodes} = require('http-status-codes')
 const User = require('../models/User')
-const { BadRequestError } = require('../../final/errors')
-const { createJWT } = require('../utils')
 const { attachCookiesToResponse } = require('../utils/jwt')
 const createTokenUser = require('../utils/createTokenUser')
 const { UnauthenticatedError } = require('../errors')
@@ -24,7 +22,7 @@ const login = async(req,res)=>{
     if(!email || !password) throw new BadRequestError('Email and password must be provided')
     const user = await User.findOne({email})
     if(!user) throw new BadRequestError("User does not exists")
-    console.log(user)
+  
 
     const isPasswordCorrect = await user.comparePassword(password);
   if (!isPasswordCorrect) {
@@ -37,8 +35,12 @@ const login = async(req,res)=>{
         user
     })
 }
-const logout = async(req,res)=>{
-    res.send('logout')
-}
-
+const logout = async (req, res) => {
+    res.cookie('token', 'logout', {
+      httpOnly: true,
+      expires: new Date(Date.now() + 1000),
+    });
+    res.status(StatusCodes.OK).json({ msg: 'user logged out!' });
+  };
+  
 module.exports={login,logout,register}

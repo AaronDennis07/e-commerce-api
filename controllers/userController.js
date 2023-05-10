@@ -1,7 +1,6 @@
 const {StatusCodes} = require('http-status-codes')
 const User = require('../models/User')
 const customError = require('../errors/index')
-const { BadRequestError } = require('../../final/errors')
 const createTokenUser = require('../utils/createTokenUser')
 const { attachCookiesToResponse } = require('../utils/jwt')
 const { checkPermissions } = require('../utils')

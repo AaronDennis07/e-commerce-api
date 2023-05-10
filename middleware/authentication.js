@@ -1,5 +1,5 @@
 
-const { UnauthenticatedError } = require('../errors')
+const { UnauthenticatedError,UnauthorizedError } = require('../errors')
 const {isTokenValid}  =require('../utils/jwt')
 
 const authenticateUser = (req,res,next)=>{
