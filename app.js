@@ -1,4 +1,3 @@
-
 require('dotenv').config()
 require('express-async-errors')
 const express = require('express')
@@ -15,16 +14,10 @@ const reviewRoutes = require('./routes/reviewRoutes')
 const Review = require('./models/Review')
 const Product = require('./models/Product')
 const orderRoutes = require('./routes/orderRoutes')
-const cors = require('cors')
-const mongoSanitize = require('express-mongo-sanitize')
-const xss = require('xss-clean')
-const helmet = require('helmet')
-const rateLimiter = require('express-rate-limit')
 const fileUpload = require('express-fileupload');
 const swaggerUI = require('swagger-ui-express');
 const YAML = require('yamljs');
 const swaggerDocument = YAML.load('./swagger.yaml');
-
 
 app.set('trust proxy',1)
 app.use(
@@ -37,6 +30,7 @@ app.use(mongoSanitize())
 app.use(xss())
 app.use(helmet())
 app.use(cors())
+
 
 app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(express.json({extended:true}))
@@ -54,6 +48,7 @@ app.use('/', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 app.use(notFound)
 app.use(customErrorhandler)
+
 const start = async()=>{
     await connectDB(process.env.MONGO_URI)
     app.listen(process.env.PORT,(err)=>{
