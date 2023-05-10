@@ -11,6 +11,31 @@ app.use(morgan('tiny'))
  })
 */
 
+/** DISBABLED FOR SWAGGER UI */
+/*
+const cors = require('cors')
+const mongoSanitize = require('express-mongo-sanitize')
+const xss = require('xss-clean')
+const helmet = require('helmet')
+const rateLimiter = require('express-rate-limit')
+
+app.set('trust proxy',1)
+app.use(
+    rateLimiter({
+        windowMs: 15 * 60 * 1000,
+        max:60
+    })
+)
+app.use(mongoSanitize())
+app.use(xss())
+app.use(helmet())
+app.use(cors())
+*/
+
+
+
+
+
 require('dotenv').config()
 require('express-async-errors')
 const express = require('express')
@@ -27,25 +52,7 @@ const reviewRoutes = require('./routes/reviewRoutes')
 const Review = require('./models/Review')
 const Product = require('./models/Product')
 const orderRoutes = require('./routes/orderRoutes')
-const cors = require('cors')
-const mongoSanitize = require('express-mongo-sanitize')
-const xss = require('xss-clean')
-const helmet = require('helmet')
-const rateLimiter = require('express-rate-limit')
 const fileUpload = require('express-fileupload');
-
-
-app.set('trust proxy',1)
-app.use(
-    rateLimiter({
-        windowMs: 15 * 60 * 1000,
-        max:60
-    })
-)
-app.use(mongoSanitize())
-app.use(xss())
-app.use(helmet())
-//app.use(cors())
 
 app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(express.json({extended:true}))
