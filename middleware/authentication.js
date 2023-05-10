@@ -1,4 +1,4 @@
-const { UnauthorizedError } = require('../../final/errors')
+
 const { UnauthenticatedError } = require('../errors')
 const {isTokenValid}  =require('../utils/jwt')
 
