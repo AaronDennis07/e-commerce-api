@@ -1,15 +1,3 @@
-/**             DEV ONLY            */
-
-/*
-const morgan = require('morgan')
-app.use(morgan('tiny'))
- app.get('/reset',async(req,res)=>{
-     await User.deleteMany()
-     await Review.deleteMany()
-     await Product.deleteMany()
-     res.send('success')
- })
-*/
 
 require('dotenv').config()
 require('express-async-errors')
@@ -33,6 +21,9 @@ const xss = require('xss-clean')
 const helmet = require('helmet')
 const rateLimiter = require('express-rate-limit')
 const fileUpload = require('express-fileupload');
+const swaggerUI = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./swagger.yaml');
 
 
 app.set('trust proxy',1)
@@ -45,24 +36,22 @@ app.use(
 app.use(mongoSanitize())
 app.use(xss())
 app.use(helmet())
-//app.use(cors())
+app.use(cors())
 
 app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(express.json({extended:true}))
 app.use(fileUpload())
+
+
 app.use('/api/v1/auth',authRoutes)
 app.use('/api/v1/users',userRoutes)
 app.use('/api/v1/products',productRoutes)
 app.use('/api/v1/reviews',reviewRoutes)
 app.use('/api/v1/orders',orderRoutes)
+app.use('/', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 
 
-app.get('/api/v1/check',(req,res)=>{
-    console.log(req.cookies)
-    console.log(req.signedCookies.token)
-    res.send('success')
-})
 app.use(notFound)
 app.use(customErrorhandler)
 const start = async()=>{
