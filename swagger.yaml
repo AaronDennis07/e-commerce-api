@@ -7,7 +7,7 @@ info:
   }
   version: '1.0'
 servers:
-- url: http://localhost:3000/api/v1
+- url: https://e-commerce-api-1g14.onrender.com/api/v1
   variables: {}
 paths:
   /auth/logout:
