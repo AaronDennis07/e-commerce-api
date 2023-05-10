@@ -45,7 +45,7 @@ app.use(
 app.use(mongoSanitize())
 app.use(xss())
 app.use(helmet())
-app.use(cors())
+//app.use(cors())
 
 app.use(cookieParser(process.env.COOKIE_SECRET))
 app.use(express.json({extended:true}))
