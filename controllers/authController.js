@@ -2,7 +2,7 @@ const {StatusCodes} = require('http-status-codes')
 const User = require('../models/User')
 const { attachCookiesToResponse } = require('../utils/jwt')
 const createTokenUser = require('../utils/createTokenUser')
-const { UnauthenticatedError } = require('../errors')
+const { UnauthenticatedError,BadRequestError } = require('../errors')
 const register = async(req,res)=>{
     const {email,name,password} = req.body
     const alreadyExits = await User.findOne({email})
