@@ -1,0 +1,763 @@
+openapi: 3.0.0
+info:
+  title: E-Commerce
+  contact: {
+    name: Aaron Dennis,
+    email: aarondennisbv01@gmail.com,
+  }
+  version: '1.0'
+servers:
+- url: http://localhost:3000/api/v1
+  variables: {}
+paths:
+  /auth/logout:
+    get:
+      tags:
+      - Auth
+      summary: Logout User
+      operationId: LogoutUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/login:
+    post:
+      tags:
+      - Auth
+      summary: Login User
+      operationId: LoginUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LoginUserRequest'
+              - example:
+                  password: abc123
+                  email: aarondennisbv01@gmail.com
+            example:
+              password: abc123
+              email: aarondennisbv01@gmail.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/register:
+    post:
+      tags:
+      - Auth
+      summary: Register User
+      operationId: RegisterUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RegisterUserRequest'
+              - example:
+                  name: dennis
+                  password: abc123
+                  email: aarondennisbv07@gmail.com
+            example:
+              name: dennis
+              password: abc123
+              email: aarondennisbv07@gmail.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /users:
+    get:
+      tags:
+      - User
+      summary: Get All Users
+      operationId: GetAllUsers
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /users/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: the user id
+    get:
+      tags:
+      - User
+      summary: Get Single User
+      operationId: GetSingleUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /users/showME:
+    get:
+      tags:
+      - User
+      summary: Get Current User
+      operationId: GetCurrentUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/updateUserPassword:
+    patch:
+      tags:
+      - User
+      summary: Update User Password
+      operationId: UpdateUserPassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateUserPasswordRequest'
+              - example:
+                  oldPassword: abc123
+                  newPassword: denurenu7
+            example:
+              oldPassword: abc123
+              newPassword: denurenu7
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/updateUser:
+    patch:
+      tags:
+      - User
+      summary: Update User
+      operationId: UpdateUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateUserRequest'
+              - example:
+                  email: aarondennisbv01@gmail.com
+                  name: dennis
+            example:
+              email: aarondennisbv01@gmail.com
+              name: dennis
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products:
+    get:
+      tags:
+      - Product
+      summary: Get All products
+      operationId: GetAllproducts
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    post:
+      tags:
+      - Product
+      summary: Create Product
+      operationId: CreateProduct
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateProductRequest'
+              - example:
+                  name: accent chair
+                  price: 25999
+                  image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+                  colors:
+                  - '#ff0000'
+                  - '#00ff00'
+                  - '#0000ff'
+                  company: marcos
+                  description: Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge
+                  category: office
+            example:
+              name: accent chair
+              price: 25999
+              image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+              colors:
+              - '#ff0000'
+              - '#00ff00'
+              - '#0000ff'
+              company: marcos
+              description: Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge
+              category: office
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: the product id
+    get:
+      tags:
+      - Product
+      summary: Get Single Product
+      operationId: GetSingleProduct
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+      
+    patch:
+      tags:
+      - Product
+      summary: Edit product
+      operationId: Editproduct
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/EditproductRequest'
+              - example:
+                  name: some product
+            example:
+              name: some product
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+      - Product
+      summary: Delete Product
+      operationId: DeleteProduct
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products/uploadImage:
+    post:
+      tags:
+      - Product
+      summary: Upload Image
+      operationId: UploadImage
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+              - image
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products/{id}/reviews:
+    get:
+      tags:
+      - Product
+      summary: Get Product Reviews
+      operationId: GetProductReviews
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: the product id
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+ 
+   
+  /reviews:
+    get:
+      tags:
+      - Review
+      summary: Get All Reviews
+      operationId: GetAllReviews
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    post:
+      tags:
+      - Review
+      summary: Create Review
+      operationId: CreateReview
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateReviewRequest'
+              - example:
+                  rating: 5
+                  title: positive
+                  comment: good product
+                  product: 645bffd72a7684ebeba9c35b
+            example:
+              rating: 5
+              title: positive
+              comment: good product
+              product: 645bffd72a7684ebeba9c35b
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /reviews/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: the review id
+    patch:
+      tags:
+      - Review
+      summary: Update Review
+      operationId: UpdateReview
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateReviewRequest'
+              - example:
+                  rating: 3
+                  title: negative
+                  comment: good product
+                  product: 644f708e0a72670b2a923dd2
+            example:
+              rating: 3
+              title: negative
+              comment: good product
+              product: 644f708e0a72670b2a923dd2
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+      - Review
+      summary: Delete Review
+      operationId: DeleteReview
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders:
+    get:
+      tags:
+      - Order
+      summary: All Orders
+      operationId: AllOrders
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - Order
+      summary: Create Single Order
+      operationId: CreateSingleOrder
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateSingleOrderRequest'
+              - example:
+                  tax: 399
+                  shippingFee: 499
+                  items:
+                  - name: accent chair
+                    price: 2599
+                    image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+                    amount: 34
+                    product: 645bffd72a7684ebeba9c35b
+            example:
+              tax: 399
+              shippingFee: 499
+              items:
+              - name: accent chair
+                price: 2599
+                image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+                amount: 34
+                product: 645bffd72a7684ebeba9c35b
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: the product id
+    get:
+      tags:
+      - Order
+      summary: Get Single Order
+      operationId: GetSingleOrder
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+      - Order
+      summary: Update Order
+      operationId: UpdateOrder
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateOrderRequest'
+              - example:
+                  paymentIntentId: ndasajdbd213423213
+            example:
+              paymentIntentId: ndasajdbd213423213
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/showAllMyOrders:
+    get:
+      tags:
+      - Order
+      summary: Show Current User Orders
+      operationId: ShowCurrentUserOrders
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    LoginUserRequest:
+      title: LoginUserRequest
+      required:
+      - password
+      - email
+      type: object
+      properties:
+        password:
+          type: string
+        email:
+          type: string
+      example:
+        password: abc123
+        email: aarondennisbv01@gmail.com
+    RegisterUserRequest:
+      title: RegisterUserRequest
+      required:
+      - name
+      - password
+      - email
+      type: object
+      properties:
+        name:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+      example:
+        name: dennis
+        password: abc123
+        email: aarondennisbv07@gmail.com
+    UpdateUserPasswordRequest:
+      title: UpdateUserPasswordRequest
+      required:
+      - oldPassword
+      - newPassword
+      type: object
+      properties:
+        oldPassword:
+          type: string
+        newPassword:
+          type: string
+      example:
+        oldPassword: abc123
+        newPassword: denurenu7
+    UpdateUserRequest:
+      title: UpdateUserRequest
+      required:
+      - email
+      - name
+      type: object
+      properties:
+        email:
+          type: string
+        name:
+          type: string
+      example:
+        email: aarondennisbv01@gmail.com
+        name: dennis
+    CreateProductRequest:
+      title: CreateProductRequest
+      required:
+      - name
+      - price
+      - image
+      - colors
+      - company
+      - description
+      - category
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: integer
+          format: int32
+        image:
+          type: string
+        colors:
+          type: array
+          items:
+            type: string
+          description: ''
+        company:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+      example:
+        name: accent chair
+        price: 25999
+        image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+        colors:
+        - '#ff0000'
+        - '#00ff00'
+        - '#0000ff'
+        company: marcos
+        description: Cloud bread VHS hell of banjo bicycle rights jianbing umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge
+        category: office
+    EditproductRequest:
+      title: EditproductRequest
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: some product
+    CreateReviewRequest:
+      title: CreateReviewRequest
+      required:
+      - rating
+      - title
+      - comment
+      - product
+      type: object
+      properties:
+        rating:
+          type: integer
+          format: int32
+        title:
+          type: string
+        comment:
+          type: string
+        product:
+          type: string
+      example:
+        rating: 5
+        title: positive
+        comment: good product
+        product: 645bffd72a7684ebeba9c35b
+    UpdateReviewRequest:
+      title: UpdateReviewRequest
+      required:
+      - rating
+      - title
+      - comment
+      - product
+      type: object
+      properties:
+        rating:
+          type: integer
+          format: int32
+        title:
+          type: string
+        comment:
+          type: string
+        product:
+          type: string
+      example:
+        rating: 3
+        title: negative
+        comment: good product
+        product: 644f708e0a72670b2a923dd2
+    CreateSingleOrderRequest:
+      title: CreateSingleOrderRequest
+      required:
+      - tax
+      - shippingFee
+      - items
+      type: object
+      properties:
+        tax:
+          type: integer
+          format: int32
+        shippingFee:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+          description: ''
+      example:
+        tax: 399
+        shippingFee: 499
+        items:
+        - name: accent chair
+          price: 2599
+          image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+          amount: 34
+          product: 645bffd72a7684ebeba9c35b
+    Item:
+      title: Item
+      required:
+      - name
+      - price
+      - image
+      - amount
+      - product
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: integer
+          format: int32
+        image:
+          type: string
+        amount:
+          type: integer
+          format: int32
+        product:
+          type: string
+      example:
+        name: accent chair
+        price: 2599
+        image: https://dl.airtable.com/.attachmentThumbnails/e8bc3791196535af65f40e36993b9e1f/438bd160
+        amount: 34
+        product: 645bffd72a7684ebeba9c35b
+    UpdateOrderRequest:
+      title: UpdateOrderRequest
+      required:
+      - paymentIntentId
+      type: object
+      properties:
+        paymentIntentId:
+          type: string
+      example:
+        paymentIntentId: ndasajdbd213423213
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+- httpBearer: []
+tags:
+- name: Auth
+- name: User
+- name: Product
+- name: Review
+- name: Order
